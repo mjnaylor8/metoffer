@@ -184,7 +184,7 @@ class MetOffer():
         query_string = "?" + "&".join(["res=" + step, "time=" + isotime if isotime is not None else "", "key=" + self.key])
         url = rest_url + query_string
         req = url_lib.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        page = url_lib.urlopen(url)
+        page = url_lib.urlopen(req)
         pg = page.read()
         return pg
     
