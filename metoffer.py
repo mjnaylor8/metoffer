@@ -183,6 +183,7 @@ class MetOffer():
         rest_url = "/".join([HOST, data_category, resource_category, field, DATA_TYPE, request])
         query_string = "?" + "&".join(["res=" + step, "time=" + isotime if isotime is not None else "", "key=" + self.key])
         url = rest_url + query_string
+        req = url_lib.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         page = url_lib.urlopen(url)
         pg = page.read()
         return pg
@@ -408,7 +409,7 @@ class Weather():
         data_key = extract_data_key(returned_data)
         self.data = []
         for weather in _weather_dict_gen(returned_data, data_key):
-            data.append(weather)
+            self.data.append(weather)
 
 
 class TextForecast():
